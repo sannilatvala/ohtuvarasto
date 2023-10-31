@@ -70,7 +70,3 @@ class TestVarasto(unittest.TestCase):
     def test_palauttaa_oikean_merkkijonon(self):
 
         self.assertAlmostEqual(str(self.varasto), f"saldo = {0}, vielä tilaa {10}")
-
-    def test_hajota(self):
-
-        self.assertEqual(0, 2)
