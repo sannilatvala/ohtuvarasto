@@ -1,27 +1,29 @@
 from varasto import Varasto
 
-
-def main():
-    mehua = Varasto(100.0)
-    olutta = Varasto(100.0, 20.2)
-
+def print_varaston_luonti(varasto, nimi):
     print("Luonnin jälkeen:")
-    print(f"Mehuvarasto: {mehua}")
-    print(f"Olutvarasto: {olutta}")
+    print(f"{nimi}varasto: {varasto}")
 
-    print("Olut getterit:")
-    print(f"saldo = {olutta.saldo}")
-    print(f"tilavuus = {olutta.tilavuus}")
-    print(f"paljonko_mahtuu = {olutta.paljonko_mahtuu()}")
+def print_varasto_tiedot(varasto, nimi):
+    print(f"{nimi} getterit:")
+    print(f"saldo = {varasto.saldo}")
+    print(f"tilavuus = {varasto.tilavuus}")
+    print(f"paljonko_mahtuu = {varasto.paljonko_mahtuu()}")
 
-    print("Mehu setterit:")
-    print("Lisätään 50.7")
-    mehua.lisaa_varastoon(50.7)
-    print(f"Mehuvarasto: {mehua}")
-    print("Otetaan 3.14")
-    mehua.ota_varastosta(3.14)
-    print(f"Mehuvarasto: {mehua}")
+def print_varasto_lisays(varasto, nimi, lisays):
+    print(f"{nimi} setterit:")
+    print(f"Lisätään {lisays}")
+    varasto.lisaa_varastoon(lisays)
+    print(f"{nimi}varasto: {varasto}")
 
+def print_varasto_otto(varasto, nimi, otto):
+    print(f"{nimi} setterit:")
+    print(f"Otetaan {otto}")
+    saatiin = varasto.ota_varastosta(otto)
+    print(f"{nimi}varasto: {varasto}")
+    print(f"Saatiin {saatiin}")
+
+def print_virhetilanteita():
     print("Virhetilanteita:")
     print("Varasto(-100.0);")
     huono = Varasto(-100.0)
@@ -31,27 +33,28 @@ def main():
     huono = Varasto(100.0, -50.7)
     print(huono)
 
-    print(f"Olutvarasto: {olutta}")
-    print("olutta.lisaa_varastoon(1000.0)")
-    olutta.lisaa_varastoon(1000.0)
-    print(f"Olutvarasto: {olutta}")
 
-    print(f"Mehuvarasto: {mehua}")
-    print("mehua.lisaa_varastoon(-666.0)")
-    mehua.lisaa_varastoon(-666.0)
-    print(f"Mehuvarasto: {mehua}")
+def main():
+    mehua = Varasto(100.0)
+    olutta = Varasto(100.0, 20.2)
 
-    print(f"Olutvarasto: {olutta}")
-    print("olutta.ota_varastosta(1000.0)")
-    saatiin = olutta.ota_varastosta(1000.0)
-    print(f"saatiin {saatiin}")
-    print(f"Olutvarasto: {olutta}")
+    print_varaston_luonti(mehua, "Mehu")
+    print_varaston_luonti(olutta, "Olut")
 
-    print(f"Mehuvarasto: {mehua}")
-    print("mehua.otaVarastosta(-32.9)")
-    saatiin = mehua.ota_varastosta(-32.9)
-    print(f"saatiin {saatiin}")
-    print(f"Mehuvarasto: {mehua}")
+    print_varasto_tiedot(olutta, "Olut")
+
+    print_varasto_lisays(mehua, "Mehu", 50.7)
+    print_varasto_otto(mehua, "Mehu", 3.14)
+
+    print_virhetilanteita()
+
+    print_varasto_lisays(olutta, "Olut", 1000.0)
+
+    print_varasto_lisays(mehua, "Mehu", -666.0)
+
+    print_varasto_otto(olutta, "Olut", 1000.0)
+
+    print_varasto_otto(mehua, "Mehu", -32.9)
 
 
 if __name__ == "__main__":
